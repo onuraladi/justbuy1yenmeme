@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Just Buy ¥1 | Samurai Path</title>
+    
+    <link rel="icon" type="image/x-icon" href="a.ico">
+
+    <style>
+        :root {
+            --yen-gold: #FFD700;
+            --samurai-red: #bc002d; /* Japon Bayrağı Kırmızısı */
+            --neon-blue: #00f3ff;
+            --dark-bg: #050505;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: white;
+            font-family: 'MS PGothic', sans-serif;
+            margin: 0;
+            text-align: center;
+            overflow-x: hidden;
+            background-image: url('https://www.transparenttextures.com/patterns/black-paper.png');
+        }
+
+        /* Yen Yağmuru Efekti */
+        #yen-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .hero {
+            position: relative;
+            z-index: 10;
+            padding: 60px 20px;
+            background: linear-gradient(to bottom, rgba(188, 0, 45, 0.2), transparent);
+        }
+
+        h1 {
+            font-size: 5rem;
+            color: var(--yen-gold);
+            text-shadow: 5px 5px 0px var(--samurai-red);
+            margin: 0;
+            letter-spacing: -2px;
+        }
+
+        .samurai-gif {
+            width: 100%;
+            max-width: 500px;
+            border: 5px solid white;
+            box-shadow: 0 0 30px var(--samurai-red);
+            margin: 20px 0;
+        }
+
+        .buy-button {
+            background: var(--samurai-red);
+            color: white;
+            padding: 25px 60px;
+            font-size: 2rem;
+            border: 4px solid var(--yen-gold);
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 900;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); box-shadow: 0 0 50px var(--samurai-red); }
+            100% { transform: scale(1); }
+        }
+
+        .token-address {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 500px;
+            border: 1px dashed white;
+            font-family: monospace;
+        }
+
+        .section-title {
+            background: var(--yen-gold);
+            color: black;
+            padding: 10px;
+            display: inline-block;
+            transform: skew(-15deg);
+            font-weight: bold;
+            margin: 40px 0;
+        }
+
+        .bushido-text {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--yen-gold);
+            margin-bottom: 30px;
+        }
+
+        /* YENİ TWITTER BUTON STİLİ */
+        .twitter-section {
+            padding: 60px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            margin-top: 50px;
+            border-top: 2px solid var(--samurai-red);
+        }
+
+        .twitter-button {
+            background: #1DA1F2;
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            transition: 0.3s;
+            box-shadow: 0 0 15px rgba(29, 161, 242, 0.5);
+        }
+
+        .twitter-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(29, 161, 242, 0.8);
+            background: #0d8bd9;
+        }
+
+    </style>
+</head>
+<body onclick="playAudio()">
+
+    <canvas id="yen-rain"></canvas>
+
+    <div class="hero">
+        <p class="bushido-text">"The warrior only buys the dip." - Bushido Code</p>
+        
+        <h1>JUST BUY ¥1</h1>
+        <p style="font-size: 1.5rem;">侍の精神でホドルしろ (HODL with Samurai Spirit)</p>
+
+        <div style="margin: 20px auto; max-width: 500px; position: relative;">
+            <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExMWV1aDR1YnJsaWs2cjJhZnJmcnRlMXNneDl1NWZ3NmhnOXU2NHR6bSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/AT3cvaLbqCsT1Ivc9f/giphy.gif" 
+                  class="samurai-gif" 
+                  style="width:100%; border: 4px solid var(--yen-gold);" 
+                  alt="Samurai Action">
+            
+            <p style="color: var(--yen-gold); font-weight: bold; font-size: 1.4rem; margin-top: 15px;">
+                月まで刀を振れ！ <br> 
+                <span style="font-size: 0.9rem; color: white;">(Swing your Katana to the Moon!)</span>
+            </p>
+        </div>
+        
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; padding: 20px;">
+            <div style="max-width: 280px; background: rgba(255,215,0,0.1); padding: 15px; border-radius: 10px;">
+                <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXRwdzd0M24ycWFqbGx2aTdwZnFvejd4cGtqczcxcWRlbGowOWlwYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/pTuxefz58lO7e/giphy.gif" style="width: 100%;" alt="Samurai 1">
+                <p style="font-weight: bold; color: var(--yen-gold);">鋼の精神、ダイヤモンドの手</p>
+                <p style="font-size: 0.8rem;">(Steel Soul, Diamond Hands)</p>
+            </div>
+        
+            <div style="max-width: 280px; background: rgba(188,0,45,0.1); padding: 15px; border-radius: 10px;">
+                <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExcmM1dzM5MG9yazlncTFlcWc0eXFvMDV4cWdoZmszbWJxMnR0czB6NCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5fQyd7jM58m5y/giphy.gif" style="width: 100%;" alt="Samurai 2">
+                <p style="font-weight: bold; color: #ff4d4d;">撤退は恥、切腹の覚悟</p>
+                <p style="font-size: 0.8rem;">(Retreat is Shame, Prepare for Seppuku)</p>
+            </div>
+        </div>
+
+        <div class="token-address">
+            CA: 0x1YEN_SAMURAI_LAUNCH_CONTRACT_COMING_SOON
+        </div>
+
+        <a href="#" class="buy-button">BUY ¥1 NOW</a>
+        
+        <p style="margin-top: 20px;">クリックして音楽を再生 (Click anywhere to start music!)</p>
+    </div>
+
+    <div class="section-title"> MEME GALLERY</div>
+
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px;">
+        <div style="max-width: 300px;">
+            <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExb29rZG1pZTc5enBrYzFiNWt3OGRjaTMybGluOWs4bjRnNnNiM3VtZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3zK7LvsEOXOLe/giphy.gif" style="width: 100%;" alt="Samurai 2">
+            <p>1 YEN = 1 HONOR</p>
+        </div>
+        <div style="max-width: 300px;">
+            <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExOGQ3MjcybW55N3hxamZvbjg2dDF0emM5Z2VuZmNuNnBiYTZneWhnMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/G5Ed9LJqPKfew/giphy.gif" style="width: 100%;" alt="Samurai 3">
+            <p>紙の手はいらない (No Paper Hands)</p>
+        </div>
+        <div style="max-width: 300px;">
+            <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExOXJteGx5ZW1vYjhsZGhnMmpmcnRvbGE0cmJ4cnBib2o1b25teGZsbCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/yGEbmgiCJYu3u/giphy.gif" style="width: 100%;" alt="Samurai 3">
+            <p>日本語: 撤退は恥、切腹の覚悟 </p>
+        </div>
+        <div style="max-width: 300px;">
+            <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExYWQ2eXhnZThud2RsZm1vbXY0d3oycXJjNTEyZWw1dXQ2amw3b3oxZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3ohjV5TEPwlB1XBn20/giphy.gif" style="width: 100%;" alt="Samurai 3">
+            <p>日本語: 鋼の精神、ダイヤモンドの手 </p>
+        </div>
+    </div>
+
+    <section class="twitter-section">
+        <h2 style="color: var(--yen-gold);">JOIN THE CLAN</h2>
+        <p>Follow the path of the Samurai on X</p>
+        <br>
+        <a href="https://twitter.com/KENDI_LINKINI_BURAYA_YAZ" target="_blank" class="twitter-button">
+            𝕏 Follow us on Twitter
+        </a>
+    </section>
+
+    <footer style="padding: 40px; opacity: 0.5; font-size: 0.8rem;">
+        © 2026 Just Buy ¥1 Yen Samurai. All rights reserved.
+    </footer>
+
+    <audio id="bgMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        let audioStarted = false;
+        function playAudio() {
+            if (!audioStarted) {
+                const audio = document.getElementById('bgMusic');
+                audio.volume = 0.5;
+                audio.play();
+                audioStarted = true;
+            }
+        }
+
+        const canvas = document.getElementById('yen-rain');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const yens = [];
+        const characters = ['¥', '1', '円', '侍'];
+
+        function createYen() {
+            return {
+                x: Math.random() * canvas.width,
+                y: -20,
+                s: Math.random() * 20 + 10,
+                v: Math.random() * 3 + 1,
+                char: characters[Math.floor(Math.random() * characters.length)]
+            };
+        }
+
+        function drawRain() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#FFD700';
+            ctx.font = '20px Arial';
+            if (yens.length < 50) yens.push(createYen());
+            yens.forEach((y, i) => {
+                ctx.fillText(y.char, y.x, y.y);
+                y.y += y.v;
+                if (y.y > canvas.height) yens.splice(i, 1);
+            });
+            requestAnimationFrame(drawRain);
+        }
+        drawRain();
+    </script>
+</body>
+</html>
